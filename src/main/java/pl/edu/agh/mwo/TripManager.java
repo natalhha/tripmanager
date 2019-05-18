@@ -25,4 +25,22 @@ public class TripManager {
 		tripList.remove(name);
 	}
 	
+	public Boolean search(String key) {
+		if (key == null) {
+			return true;
+		}
+		
+		for (Map.Entry<String, Trip> trip : tripList.entrySet()) {
+			if (trip.getValue().getName() == key || trip.getValue().getDescription() == key) {
+				return true;
+			}
+			for (Photo photo : trip.getValue().getPhoto()) {
+				if (photo.getComment() == key) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
 }
